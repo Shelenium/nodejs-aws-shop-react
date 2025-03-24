@@ -7,6 +7,25 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { theme } from "~/theme";
+import axios from "axios";
+
+axios.interceptors.response.use(
+  (response) => {
+    console.log("Successful response");
+    return response;
+  },
+  (error) => {
+    switch (error.response?.status) {
+      case 401:
+        alert("401 Unauthorized: Missing or invalid token");
+        break;
+      case 403:
+        alert("403 Forbidden: You do not have access to this resource");
+        break;
+    }
+    return Promise.reject(error);
+  }
+);
 
 const queryClient = new QueryClient({
   defaultOptions: {
