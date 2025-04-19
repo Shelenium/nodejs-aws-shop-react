@@ -33,29 +33,29 @@ export const handlers = [
       ctx.json<AvailableProduct>(product)
     );
   }),
-  rest.get(`${API_PATHS.bff}/profile/cart`, (req, res, ctx) => {
+  rest.get(`${API_PATHS.bff}/cart`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(), ctx.json<CartItem[]>(cart));
   }),
-  rest.put(`${API_PATHS.bff}/profile/cart`, (req, res, ctx) => {
+  rest.put(`${API_PATHS.bff}/cart`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
-  rest.get(`${API_PATHS.order}/order`, (req, res, ctx) => {
+  rest.get(`${API_PATHS.bff}/order`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.delay(), ctx.json<Order[]>(orders));
   }),
-  rest.put(`${API_PATHS.order}/order`, (req, res, ctx) => {
+  rest.put(`${API_PATHS.bff}/order`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
-  rest.get(`${API_PATHS.order}/order/:id`, (req, res, ctx) => {
+  rest.get(`${API_PATHS.bff}/order/:id`, (req, res, ctx) => {
     const order = orders.find((p) => p.id === req.params.id);
     if (!order) {
       return res(ctx.status(404));
     }
     return res(ctx.status(200), ctx.delay(), ctx.json(order));
   }),
-  rest.delete(`${API_PATHS.order}/order/:id`, (req, res, ctx) => {
+  rest.delete(`${API_PATHS.bff}/order/:id`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
-  rest.put(`${API_PATHS.order}/order/:id/status`, (req, res, ctx) => {
+  rest.put(`${API_PATHS.bff}/order/:id/status`, (req, res, ctx) => {
     return res(ctx.status(200));
   }),
 ];
